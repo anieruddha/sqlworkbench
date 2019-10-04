@@ -1,0 +1,80 @@
+/*
+ * This file is part of SQL Workbench/J, https://www.sql-workbench.eu
+ *
+ * Copyright 2002-2018 Thomas Kellerer.
+ *
+ * Licensed under a modified Apache License, Version 2.0 (the "License")
+ * that restricts the use for certain governments.
+ * You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      https://www.sql-workbench.eu/manual/license.html
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * To contact the author please send an email to: support@sql-workbench.eu
+ */
+package workbench.sql.generator;
+
+import java.util.EnumSet;
+import java.util.List;
+
+import workbench.db.ColumnIdentifier;
+import workbench.db.TableIdentifier;
+import workbench.db.WbConnection;
+
+/**
+ *
+ * @author Thomas Kellerer
+ */
+public class OracleInsertGenerator
+  extends DefaultInsertGenerator
+{
+  public OracleInsertGenerator(TableIdentifier table, List<ColumnIdentifier> targetColumns)
+  {
+    super(table, targetColumns);
+  }
+
+  public OracleInsertGenerator(TableIdentifier table, List<ColumnIdentifier> targetColumns, WbConnection conn)
+  {
+    super(table, targetColumns, conn);
+  }
+
+  @Override
+  public boolean supportsMultiRowInserts()
+  {
+    return false;
+  }
+
+  @Override
+  public boolean supportsType(InsertType type)
+  {
+    return super.supportsType(type) || type == InsertType.InsertIgnore || type == InsertType.Merge;
+  }
+
+  @Override
+  protected String getInsertSQLStart()
+  {
+    if (this.getInsertType() == InsertType.InsertIgnore)
+    {
+      String start = "INSERT /*+ IGNORE_ROW_ON_DUPKEY_INDEX (";
+      start += getTargetTableName() + "(";
+      List<ColumnIdentifier> keys = getKeyColumns();
+      for (int i=0; i < keys.size(); i++)
+      {
+        if (i > 0) start += ",";
+        String colname = keys.get(i).getDisplayName();
+        start += colname;
+      }
+      start += ")) */ INTO ";
+      return start;
+    }
+    return super.getInsertSQLStart();
+  }
+
+
+}

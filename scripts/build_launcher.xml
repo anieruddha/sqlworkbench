@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="build-launcher" name="Workbench">
+
+  <property name="root" value=".."/>
+  <property name="distdir" value="../dist"/>
+  <property name="gui-exe" value="SQLWorkbench.exe"/>
+  <property name="console-exe" value="sqlwbconsole.exe"/>
+  <property name="launch4j.dir" value="../launcher/launch4j"/>
+  <property name="file.version" value="1.0.0.0"/>
+  <property name="txt.file.version" value="1"/>
+  <property name="copyright" value="Thomas Kellerer"/>
+  <property name="internal.name" value="SQLWorkbench"/>
+
+  <path id="launch4j.path">
+    <fileset dir="${launch4j.dir}">
+      <include name="*.jar" />
+    </fileset>
+  </path>
+
+  <target name="clean">
+    <delete file="${distdir}/${gui-exe}" failonerror="false"/>
+    <delete file="${distdir}/${console-exe}" failonerror="false"/>
+  </target>
+
+  <target name="init">
+    <loadproperties srcFile="release.property"/>
+    <property name="build.number" value="${release.build.number}"/>
+  </target>
+
+  <taskdef name="launch4j" classname="net.sf.launch4j.ant.Launch4jTask" classpathref="launch4j.path"/>
+
+  <target name="build-launcher" depends="init,clean,-build-gui,-build-console"/>
+
+  <target name="-build-gui">
+    <launch4j>
+      <config headerType="gui"
+              outfile="${distdir}/${gui-exe}"
+              dontWrapJar="true"
+              stayAlive="true"
+              downloadUrl="https://adoptopenjdk.net"
+              icon="../launcher/workbench.ico">
+
+        <classPath mainClass="workbench.WbStarter">
+          <cp>%EXEDIR%\sqlworkbench.jar</cp>
+          <cp>%EXEDIR%\ext\*.jar</cp>
+        </classPath>
+        
+        <singleInstance mutexName="_sqlwb_exe_"/>
+        
+        <jre minVersion="1.8.0" bundledJre64Bit="true"
+             path="jre;%WORKBENCH_JDK%;%WORKBENCH_JRE%;%JAVA_HOME%;%PATH%"
+             runtimeBits="64/32"
+             maxHeapPercent="75">
+             
+          <opt>-Dlaunch4j.exefile=&quot;%EXEFILE%&quot;</opt>
+          <opt>-Dvisualvm.display.name=SQLWorkbench/J</opt>
+
+        </jre>
+
+        <versionInfo productVersion="${build.number}.0.0.0"
+                     txtProductVersion="Build ${build.number}"
+                     fileVersion="${file.version}"
+                     txtFileVersion="${txt.file.version}"
+                     fileDescription="SQL Workbench/J Launcher"
+                     productName="SQL Workbench/J"
+                     internalName="${internal.name}"
+                     originalFilename="SQLWorkbench.exe"
+                     copyright="${copyright}"
+                     />
+      </config>
+    </launch4j>
+  </target>
+
+  <target name="-build-console">
+    <launch4j>
+      <config headerType="console"
+              outfile="${distdir}/${console-exe}"
+              dontWrapJar="true"
+              stayAlive="true"
+              icon="../launcher/console.ico">
+
+        <classPath mainClass="workbench.console.SQLConsole">
+          <cp>%EXEDIR%\sqlworkbench.jar</cp>
+          <cp>%EXEDIR%\ext\*.jar</cp>
+        </classPath>
+
+        <jre minVersion="1.8.0" bundledJre64Bit="true"
+             path="jre;%WORKBENCH_JDK%;%WORKBENCH_JRE%;%JAVA_HOME%;%PATH%"
+             runtimeBits="64/32"
+             maxHeapPercent="75">
+
+          <opt>-Dlaunch4j.exefile=&quot;%EXEFILE%&quot;</opt>
+          <opt>-Dvisualvm.display.name=SQLWorkbench/J</opt>
+
+        </jre>
+
+        <versionInfo productVersion="${build.number}.0.0.0"
+                     txtProductVersion="Build ${build.number}"
+                     fileVersion="${file.version}"
+                     txtFileVersion="${txt.file.version}"
+                     fileDescription="SQL Workbench/J Console Launcher"
+                     productName="SQL Workbench/J Command Line"
+                     internalName="${internal.name}"
+                     originalFilename="sqlwbconsole.exe"
+                     copyright="${copyright}"
+                     />
+      </config>
+    </launch4j>
+  </target>
+
+
+</project>
