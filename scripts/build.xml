@@ -174,8 +174,8 @@
            debuglevel="source,lines"
            destdir="${build}"
            srcdir="${src}"
-           target="1.2"
-           source="1.2"
+           target="1.8"
+           source="1.8"
            encoding="ISO-8859-1"
            includeantruntime="false"
            includes="workbench/WbStarter.java"/>
