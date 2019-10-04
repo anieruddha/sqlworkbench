@@ -40,8 +40,9 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JToolBar;
 import javax.swing.KeyStroke;
-import javax.swing.UIManager;
+import workbench.gui.WbUIManager;
 
+import workbench.gui.WbUIManager;
 import workbench.interfaces.Disposable;
 import workbench.resource.GuiSettings;
 import workbench.resource.IconMgr;
@@ -687,7 +688,7 @@ public class WbAction
     KeyStroke key = getDefaultAccelerator();
     if (key == null) return null;
 
-    String acceleratorDelimiter = UIManager.getString("MenuItem.acceleratorDelimiter");
+    String acceleratorDelimiter = WbUIManager.getString("MenuItem.acceleratorDelimiter");
     if (acceleratorDelimiter == null)
     {
       acceleratorDelimiter = "-";

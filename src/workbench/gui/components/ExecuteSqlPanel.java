@@ -39,8 +39,9 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
-import javax.swing.UIManager;
+import workbench.gui.WbUIManager;
 
+import workbench.gui.WbUIManager;
 import workbench.interfaces.ResultLogger;
 import workbench.log.LogMgr;
 import workbench.resource.IconMgr;
@@ -171,7 +172,7 @@ public abstract class ExecuteSqlPanel
     FontMetrics fm = null;
     if (lbl == null)
     {
-      font = UIManager.getDefaults().getFont("Label.font");
+      font = WbUIManager.getDefaults().getFont("Label.font");
     }
     else
     {

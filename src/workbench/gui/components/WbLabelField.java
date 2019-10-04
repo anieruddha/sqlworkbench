@@ -27,7 +27,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.JTextField;
-import javax.swing.UIManager;
+import workbench.gui.WbUIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.basic.BasicTextFieldUI;
 
@@ -65,19 +65,19 @@ public class WbLabelField
     addMouseListener(mouseListener);
     setBorder(new EmptyBorder(2, 5, 2, 2));
 
-    Font f = UIManager.getFont("Label.font");
+    Font f = WbUIManager.getFont("Label.font");
     if (f != null)
     {
       setFont(f);
     }
 
-    Color bg = UIManager.getColor("Label.background");
+    Color bg = WbUIManager.getColor("Label.background");
     if (bg != null)
     {
       setBackground(bg);
     }
 
-    Color fg = UIManager.getColor("Label.foreground");
+    Color fg = WbUIManager.getColor("Label.foreground");
     if (fg != null)
     {
       setForeground(fg);

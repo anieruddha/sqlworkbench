@@ -46,7 +46,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.LookAndFeel;
 import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
+import workbench.gui.WbUIManager;
 
 import workbench.resource.GuiSettings;
 import workbench.resource.ResourceMgr;
@@ -91,7 +91,7 @@ public class LnFDefinitionPanel
 			}
 		});
 
-		Font f = UIManager.getDefaults().getFont("Label.font");
+		Font f = WbUIManager.getDefaults().getFont("Label.font");
 		if (f != null)
 		{
 			f = f.deriveFont(Font.BOLD, (float)(f.getSize() * 1.2));

@@ -27,9 +27,10 @@ import java.awt.Insets;
 
 import javax.swing.JTabbedPane;
 import javax.swing.LookAndFeel;
-import javax.swing.UIManager;
+import workbench.gui.WbUIManager;
 import javax.swing.plaf.TabbedPaneUI;
 
+import workbench.gui.WbUIManager;
 import workbench.resource.Settings;
 
 import workbench.gui.WbSwingUtilities;
@@ -69,7 +70,7 @@ public class TabbedPaneUIFactory
 			return null;
 		}
 
-		LookAndFeel lnf = UIManager.getLookAndFeel();
+		LookAndFeel lnf = WbUIManager.getLookAndFeel();
 		String lnfClass = lnf.getClass().getName();
 
 		if (lnfClass.equals("javax.swing.plaf.metal.MetalLookAndFeel"))
@@ -109,8 +110,8 @@ public class TabbedPaneUIFactory
 		catch (Exception e)
 		{
 			JTabbedPane pane = new JTabbedPane();
-			ui = (TabbedPaneUI)UIManager.getUI(pane);
-			UIManager.getDefaults().put("TabbedPaneUI", ui.getClass().getName());
+			ui = (TabbedPaneUI)WbUIManager.getUI(pane);
+			WbUIManager.getDefaults().put("TabbedPaneUI", ui.getClass().getName());
 		}
 		return ui;
 	}

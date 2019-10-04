@@ -44,7 +44,7 @@ import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIDefaults;
-import javax.swing.UIManager;
+import workbench.gui.WbUIManager;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
@@ -258,7 +258,7 @@ public class TableSearchPanel
         if (f == null)
         {
           // With JDK 7, getTitleFont() seems to return null...
-          UIDefaults def = UIManager.getDefaults();
+          UIDefaults def = WbUIManager.getDefaults();
           f = def.getFont("Label.font");
         }
         // Check for != null again - just to make sure.

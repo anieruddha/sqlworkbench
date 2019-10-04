@@ -38,7 +38,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
+import workbench.gui.WbUIManager;
 
 import workbench.resource.IconMgr;
 import workbench.resource.ResourceMgr;
@@ -173,7 +173,7 @@ public class WbFontPicker
 		this.selectedFont = f;
 		if (f == null)
 		{
-			Font df = UIManager.getDefaults().getFont("Label.font");
+			Font df = WbUIManager.getDefaults().getFont("Label.font");
 			this.fontName.setFont(df);
 			this.fontName.setText(ResourceMgr.getString("LblDefaultIndicator"));
 		}

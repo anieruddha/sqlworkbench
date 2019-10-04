@@ -21,6 +21,8 @@
  */
 package workbench;
 
+import workbench.gui.WbUIManager;
+
 import java.awt.BorderLayout;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
@@ -28,14 +30,7 @@ import java.awt.event.ActionListener;
 import java.lang.reflect.Method;
 import java.net.URL;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JOptionPane;
-import javax.swing.UIManager;
-import javax.swing.WindowConstants;
-import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.*;
 
 /**
  * This is a wrapper to kick-off the actual WbManager class.
@@ -51,58 +46,6 @@ import javax.swing.UnsupportedLookAndFeelException;
 public class WbStarter
 {
 
-  private static void initInterface(final String error) {
-    Frame dummy = new Frame("SQL Workbench/J - Wrong Java version");
-    dummy.setBounds(-2000, -2000, 0, 0);
-    dummy.setVisible(true);
-
-    try {
-      URL iconUrl = WbStarter.class.getClassLoader().getResource("workbench/resource/images/workbench16.png");
-      ImageIcon icon = new ImageIcon(iconUrl);
-      dummy.setIconImage(icon.getImage());
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-    final JDialog d = new JDialog(dummy, "SQL Workbench/J - Wrong Java version", true);
-    d.getContentPane().setLayout(new BorderLayout(5, 5));
-    JButton b = new JButton("Close");
-    b.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        d.setVisible(false);
-        d.dispose();
-      }
-    });
-    JOptionPane pane = new JOptionPane(error, JOptionPane.WARNING_MESSAGE, JOptionPane.DEFAULT_OPTION, (Icon) null, new Object[]{b});
-    d.getContentPane().add(pane, BorderLayout.CENTER);
-    d.pack();
-    d.setLocationRelativeTo(null);
-    d.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-    d.setVisible(true);
-  }
-  private static void initMacInterface(final String error){
-    try {
-      System.setProperty("apple.laf.useScreenMenuBar", "true");
-      System.setProperty("com.apple.mrj.application.apple.menu.about.name", "Aniruddha-SqlWorkbench/J");
-      UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-    }
-    catch(ClassNotFoundException e) {
-      System.out.println("ClassNotFoundException: " + e.getMessage());
-    }
-    catch(InstantiationException e) {
-      System.out.println("InstantiationException: " + e.getMessage());
-    }
-    catch(IllegalAccessException e) {
-      System.out.println("IllegalAccessException: " + e.getMessage());
-    }
-    catch(UnsupportedLookAndFeelException e) {
-      System.out.println("UnsupportedLookAndFeelException: " + e.getMessage());
-    }
-    javax.swing.SwingUtilities.invokeLater(new Runnable() {
-      public void run() {
-        initInterface(error);
-      }
-    });
-  }
   /**
    * @param args the command line arguments
    */
@@ -112,7 +55,7 @@ public class WbStarter
     String cleanVersion = version;
 
     int versionNr = -1;
-
+    System.setProperty("apple.awt.application.name", "SQL Workbench/J");
     try
     {
       int p1 = findFirstNonDigit(cleanVersion);
@@ -163,20 +106,41 @@ public class WbStarter
       System.err.println(error);
       try
       {
-//        String os = System.getProperty("os.name").toLowerCase();
-//        if(os.startsWith("mac")){
-//          initMacInterface(error);
-//        }else{
-//          UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-//          initInterface(error);
-//        }
-        initMacInterface(error);
-
-        // UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        WbUIManager.setLookAndFeel(WbUIManager.getSystemLookAndFeelClassName());
 
         // The dummy Frame is needed for pre Java 5 because otherwise
         // the dialog will not appear in the Windows task bar
+        Frame dummy = new Frame("SQL Workbench/J - Wrong Java version");
+        dummy.setBounds(-2000, -2000, 0, 0);
+        dummy.setVisible(true);
 
+        try
+        {
+          URL iconUrl = WbStarter.class.getClassLoader().getResource("workbench/resource/images/workbench16.png");
+          ImageIcon icon = new ImageIcon(iconUrl);
+          dummy.setIconImage(icon.getImage());
+        }
+        catch (Exception e)
+        {
+          e.printStackTrace();
+        }
+        final JDialog d = new JDialog(dummy, "SQL Workbench/J - Wrong Java version", true);
+        d.getContentPane().setLayout(new BorderLayout(5, 5));
+        JButton b = new JButton("Close");
+        b.addActionListener(new ActionListener()
+        {
+          public void actionPerformed(ActionEvent e)
+          {
+            d.setVisible(false);
+            d.dispose();
+          }
+        });
+        JOptionPane pane = new JOptionPane(error, JOptionPane.WARNING_MESSAGE, JOptionPane.DEFAULT_OPTION, (Icon)null, new Object[] { b } );
+        d.getContentPane().add(pane, BorderLayout.CENTER);
+        d.pack();
+        d.setLocationRelativeTo(null);
+        d.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        d.setVisible(true);
       }
       catch (Throwable e)
       {

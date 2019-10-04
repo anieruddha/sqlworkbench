@@ -70,7 +70,7 @@ import javax.swing.RootPaneContainer;
 import javax.swing.SwingUtilities;
 import javax.swing.ToolTipManager;
 import javax.swing.UIDefaults;
-import javax.swing.UIManager;
+import workbench.gui.WbUIManager;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
@@ -745,8 +745,8 @@ public class WbSwingUtilities
 
   private static JLabel createMessageLabel(String message)
   {
-    Color color = UIManager.getColor("OptionPane.messageForeground");
-    Font messageFont = UIManager.getFont("OptionPane.messageFont");
+    Color color = WbUIManager.getColor("OptionPane.messageForeground");
+    Font messageFont = WbUIManager.getFont("OptionPane.messageFont");
     JLabel label = new JLabel(message, JLabel.LEADING);
     if (color != null)
     {
@@ -1465,7 +1465,7 @@ public class WbSwingUtilities
 
   public static int calculateMaxMenuItems(JFrame window)
   {
-    UIDefaults def = UIManager.getDefaults();
+    UIDefaults def = WbUIManager.getDefaults();
     Font itemFont = def.getFont("MenuItem.font");
     Font barFont = def.getFont("MenuBar.font");
 

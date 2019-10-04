@@ -32,7 +32,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JTree;
 import javax.swing.SwingConstants;
-import javax.swing.UIManager;
+import workbench.gui.WbUIManager;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeCellRenderer;
 
@@ -66,10 +66,10 @@ public class DependencyTreeCellRenderer
 		this.setHorizontalAlignment(SwingConstants.LEFT);
 		this.fk = IconMgr.getInstance().getLabelIcon("key");
 		this.table = IconMgr.getInstance().getLabelIcon("table");
-		this.selectedForeground = UIManager.getColor("Tree.selectionForeground");
-		this.selectedBackground = UIManager.getColor("Tree.selectionBackground");
-		this.unselectedForeground = UIManager.getColor("Tree.textForeground");
-		this.unselectedBackground = UIManager.getColor("Tree.textBackground");
+		this.selectedForeground = WbUIManager.getColor("Tree.selectionForeground");
+		this.selectedBackground = WbUIManager.getColor("Tree.selectionBackground");
+		this.unselectedForeground = WbUIManager.getColor("Tree.textForeground");
+		this.unselectedBackground = WbUIManager.getColor("Tree.textBackground");
 	}
 
 	@Override

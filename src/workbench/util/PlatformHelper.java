@@ -30,7 +30,7 @@ import javax.swing.JComponent;
 import javax.swing.JPopupMenu;
 import javax.swing.JSeparator;
 import javax.swing.LookAndFeel;
-import javax.swing.UIManager;
+import workbench.gui.WbUIManager;
 
 /**
  *
@@ -88,7 +88,7 @@ public class PlatformHelper
   public static void installGtkPopupBugWorkaround()
   {
     // Get current look-and-feel implementation class
-    LookAndFeel laf = UIManager.getLookAndFeel();
+    LookAndFeel laf = WbUIManager.getLookAndFeel();
     Class<?> lafClass = laf.getClass();
 
     // Do nothing when not using the problematic LaF

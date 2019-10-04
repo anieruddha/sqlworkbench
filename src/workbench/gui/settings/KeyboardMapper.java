@@ -33,7 +33,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
-import javax.swing.UIManager;
+import workbench.gui.WbUIManager;
 
 import workbench.resource.ResourceMgr;
 
@@ -55,7 +55,7 @@ public class KeyboardMapper
 		this.display.addKeyListener(this);
 		this.display.setEditable(false);
 		this.display.setDisabledTextColor(display.getForeground());
-		this.display.setBackground(UIManager.getColor("TextArea.background"));
+		this.display.setBackground(WbUIManager.getColor("TextArea.background"));
 		this.add(display);
 	}
 

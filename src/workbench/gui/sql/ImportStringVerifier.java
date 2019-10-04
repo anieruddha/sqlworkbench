@@ -34,7 +34,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
+import workbench.gui.WbUIManager;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
@@ -179,7 +179,7 @@ public class ImportStringVerifier
 		JTextField msg = new JTextField();
 		msg.setEnabled(false);
 		msg.setText(ResourceMgr.getString("MsgClipFormat"));
-		msg.setBackground(UIManager.getColor("TextArea.background"));
+		msg.setBackground(WbUIManager.getColor("TextArea.background"));
 		msg.setDisabledTextColor(msg.getForeground());
 		Border b = new EmptyBorder(4,2,4,2);
 		msg.setBorder(b);

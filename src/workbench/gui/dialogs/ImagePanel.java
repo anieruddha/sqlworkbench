@@ -43,7 +43,7 @@ import java.util.Map;
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
+import workbench.gui.WbUIManager;
 
 import workbench.log.LogMgr;
 import workbench.resource.ResourceMgr;
@@ -148,7 +148,7 @@ public class ImagePanel
 		else
 		{
 			String txt = ResourceMgr.getString("ErrImgNotSupp");
-			Font std = UIManager.getDefaults().getFont("Label.font");
+			Font std = WbUIManager.getDefaults().getFont("Label.font");
 			Font f = std.deriveFont((float)12);
 			g.setFont(f);
 			FontMetrics fm = g.getFontMetrics();

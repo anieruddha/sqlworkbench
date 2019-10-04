@@ -37,7 +37,7 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 import javax.swing.SwingConstants;
-import javax.swing.UIManager;
+import workbench.gui.WbUIManager;
 import javax.swing.border.Border;
 
 /**
@@ -66,11 +66,11 @@ public class WbTextLabel
 	{
 		super();
 		this.setDoubleBuffered(true);
-		this.setBackground(UIManager.getColor("Label.background"));
-		this.textColor = UIManager.getColor("Label.foreground");
+		this.setBackground(WbUIManager.getColor("Label.background"));
+		this.textColor = WbUIManager.getColor("Label.foreground");
 		this.setForeground(textColor);
 		this.setOpaque(false);
-		Font f = UIManager.getFont("Label.font");
+		Font f = WbUIManager.getFont("Label.font");
 		if (f != null)
 		{
 			super.setFont(f);

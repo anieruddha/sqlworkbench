@@ -32,7 +32,7 @@ import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
+import workbench.gui.WbUIManager;
 import javax.swing.border.EmptyBorder;
 
 import workbench.log.LogMgr;
@@ -153,7 +153,7 @@ public class ErrorContinueDialog
 
     int fontHeight = IconMgr.getInstance().getSizeForLabel();
 
-    Font messageFont = UIManager.getFont("OptionPane.messageFont");
+    Font messageFont = WbUIManager.getFont("OptionPane.messageFont");
     if (messageFont != null)
     {
       FontMetrics fm = messagePanel.getFontMetrics(messageFont);

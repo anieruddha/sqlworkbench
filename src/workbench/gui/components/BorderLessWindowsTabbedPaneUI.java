@@ -28,11 +28,12 @@ import java.awt.Graphics;
 import java.awt.Insets;
 
 import javax.swing.JTabbedPane;
-import javax.swing.UIManager;
+import workbench.gui.WbUIManager;
 
 import workbench.gui.WbSwingUtilities;
 
 import com.sun.java.swing.plaf.windows.WindowsTabbedPaneUI;
+import workbench.gui.WbUIManager;
 
 /**
  *
@@ -60,7 +61,7 @@ public class BorderLessWindowsTabbedPaneUI
   protected void installDefaults()
   {
     super.installDefaults();
-    selColor = UIManager.getColor("TabbedPane.selected");
+    selColor = WbUIManager.getColor("TabbedPane.selected");
   }
 
 	@Override

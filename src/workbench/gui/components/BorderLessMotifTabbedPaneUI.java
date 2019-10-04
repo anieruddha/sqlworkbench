@@ -28,9 +28,10 @@ import java.awt.Graphics;
 import java.awt.Insets;
 
 import javax.swing.JTabbedPane;
-import javax.swing.UIManager;
+import workbench.gui.WbUIManager;
 
 import com.sun.java.swing.plaf.motif.MotifTabbedPaneUI;
+import workbench.gui.WbUIManager;
 
 /**
  *
@@ -69,7 +70,7 @@ public class BorderLessMotifTabbedPaneUI
 	protected void installDefaults()
 	{
 		super.installDefaults();
-		selColor = UIManager.getColor("TabbedPane.selected");
+		selColor = WbUIManager.getColor("TabbedPane.selected");
 	}
 
 	@Override

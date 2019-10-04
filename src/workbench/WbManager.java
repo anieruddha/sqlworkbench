@@ -35,9 +35,10 @@ import javax.swing.FocusManager;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.UIManager;
+import workbench.gui.WbUIManager;
 
 import workbench.console.SQLConsole;
+import workbench.gui.WbUIManager;
 import workbench.interfaces.FontChangedListener;
 import workbench.interfaces.ToolWindow;
 import workbench.interfaces.ToolWindowManager;
@@ -235,8 +236,8 @@ public final class WbManager
   {
     if (aFontKey.equals(Settings.PROPERTY_DATA_FONT))
     {
-      UIManager.put("Table.font", newFont);
-      UIManager.put("TableHeader.font", newFont);
+      WbUIManager.put("Table.font", newFont);
+      WbUIManager.put("TableHeader.font", newFont);
     }
   }
 

@@ -30,12 +30,12 @@ import javax.swing.Action;
 import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.UIDefaults;
-import javax.swing.UIManager;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.plaf.basic.BasicBorders;
 
+import workbench.gui.WbUIManager;
 import workbench.resource.ResourceMgr;
 
 /**
@@ -126,7 +126,7 @@ public class WbButton
 		if (rolloverEnabled) return;
 
 		setBasicUI();
-		UIDefaults table = UIManager.getLookAndFeelDefaults();
+		UIDefaults table = WbUIManager.getLookAndFeelDefaults();
 		Border out = new BasicBorders.RolloverButtonBorder(
 			table.getColor("controlShadow"),
 			table.getColor("controlDkShadow"),

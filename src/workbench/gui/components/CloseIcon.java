@@ -23,6 +23,8 @@
  */
 package workbench.gui.components;
 
+import workbench.gui.WbUIManager;
+
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Component;
@@ -31,7 +33,7 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
 import javax.swing.Icon;
-import javax.swing.UIManager;
+import workbench.gui.WbUIManager;
 
 /**
  *
@@ -42,7 +44,7 @@ public class CloseIcon
 {
   private static final float SMALL_SIZE_FACTOR = 0.3f;
   private static final float LARGE_SIZE_FACTOR = 0.15f;
-  private static final Color DISABLED_FG_COLOR = UIManager.getDefaults().getColor("Button.disabledForeground");
+  private static final Color DISABLED_FG_COLOR = WbUIManager.getDefaults().getColor("Button.disabledForeground");
 
   private final BasicStroke stroke;
   private final Color foregroundColor;

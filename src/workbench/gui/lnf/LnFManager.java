@@ -26,10 +26,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import javax.swing.LookAndFeel;
-import javax.swing.UIManager;
-import javax.swing.UIManager.LookAndFeelInfo;
+import javax.swing.*;
 
+import workbench.gui.WbUIManager;
 import workbench.resource.Settings;
 
 import workbench.util.CollectionUtil;
@@ -73,9 +72,9 @@ public class LnFManager
 		// The Liquid Look & Feel "installs" itself as a System L&F and if
 		// activated is returned in getInstalledLookAndFeels(). To avoid
 		// a duplicate entry we check this before adding a "system" look and feel
-		LookAndFeelInfo[] systemLnf = UIManager.getInstalledLookAndFeels();
+		UIManager.LookAndFeelInfo[] systemLnf = WbUIManager.getInstalledLookAndFeels();
 
-		for (LookAndFeelInfo lnfInfo : systemLnf)
+		for (UIManager.LookAndFeelInfo lnfInfo : systemLnf)
 		{
 			LnFDefinition lnf = new LnFDefinition(lnfInfo.getName(), lnfInfo.getClassName());
 			if (!lnfList.contains(lnf))
@@ -98,7 +97,7 @@ public class LnFManager
 
 	public LnFDefinition getCurrentLnF()
 	{
-		LookAndFeel lnf = UIManager.getLookAndFeel();
+		LookAndFeel lnf = WbUIManager.getLookAndFeel();
 		String lnfClass = lnf.getClass().getName();
 		return findLookAndFeel(lnfClass);
 	}

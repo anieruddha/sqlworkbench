@@ -42,7 +42,7 @@ import java.beans.PropertyChangeListener;
 import javax.swing.Icon;
 import javax.swing.JTabbedPane;
 import javax.swing.JToolTip;
-import javax.swing.UIManager;
+import workbench.gui.WbUIManager;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.plaf.TabbedPaneUI;
@@ -281,7 +281,7 @@ public class WbTabbedPane
 			return 0;
 		}
 		int fontHeight = metrics.getHeight();
-		Insets tabInsets = UIManager.getInsets("TabbedPane.tabInsets");
+		Insets tabInsets = WbUIManager.getInsets("TabbedPane.tabInsets");
 		if (tabInsets != null)
 		{
 			fontHeight += tabInsets.top + tabInsets.bottom + 2;

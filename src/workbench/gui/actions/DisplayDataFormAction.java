@@ -30,10 +30,11 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.SwingUtilities;
 import javax.swing.UIDefaults;
-import javax.swing.UIManager;
+import workbench.gui.WbUIManager;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 
+import workbench.gui.WbUIManager;
 import workbench.resource.ResourceMgr;
 
 import workbench.gui.WbSwingUtilities;
@@ -101,7 +102,7 @@ public class DisplayDataFormAction
 
       // make the form wider, so that the vertical scrollbar does not
       // force a horizontal scrollbar to appear because the vertical space is now smaller
-      UIDefaults def = UIManager.getDefaults();
+      UIDefaults def = WbUIManager.getDefaults();
       int scrollwidth = def.getInt("ScrollBar.width");
       if (scrollwidth <= 0) scrollwidth = 32; // this should leave enough room...
       d.width += scrollwidth + 2;

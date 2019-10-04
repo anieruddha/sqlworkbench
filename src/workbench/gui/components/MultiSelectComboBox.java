@@ -40,11 +40,12 @@ import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.UIManager;
+import workbench.gui.WbUIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 
+import workbench.gui.WbUIManager;
 import workbench.resource.IconMgr;
 import workbench.resource.ResourceMgr;
 
@@ -159,7 +160,7 @@ public class MultiSelectComboBox<T extends Object>
       values = newItems;
     }
 
-    int scrollWidth = UIManager.getInt("ScrollBar.width");
+    int scrollWidth = WbUIManager.getInt("ScrollBar.width");
     setPopupWidth(maxElementWidth + scrollWidth + 5);
     setMaximumRowCount(Math.min(getItemCount() + 1, 25));
     this.setToolTipText(getSelectedItemsDisplay());

@@ -52,7 +52,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.UIManager;
+import workbench.gui.WbUIManager;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.TableModel;
@@ -180,7 +180,7 @@ public class RecordFormPanel
 		Font displayFont = Settings.getInstance().getDataFont(true);
 		if (displayFont == null)
 		{
-			displayFont = UIManager.getFont("TextField.font");
+			displayFont = WbUIManager.getFont("TextField.font");
 		}
 		FontMetrics fm = getFontMetrics(displayFont);
 		int numChars = GuiSettings.getDefaultFormFieldWidth();

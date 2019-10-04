@@ -31,7 +31,7 @@ import java.util.Set;
 
 import javax.swing.LookAndFeel;
 import javax.swing.UIDefaults;
-import javax.swing.UIManager;
+import workbench.gui.WbUIManager;
 
 import workbench.log.CallerInfo;
 import workbench.log.LogMgr;
@@ -117,7 +117,7 @@ public class LnFHelper
 
 	private static int getFontHeight(String key)
 	{
-		UIDefaults def = UIManager.getDefaults();
+		UIDefaults def = WbUIManager.getDefaults();
 		double factor = Toolkit.getDefaultToolkit().getScreenResolution() / 72.0;
 		Font font = def.getFont(key);
 		if (font == null) return 18;
@@ -129,7 +129,7 @@ public class LnFHelper
 		initializeLookAndFeel();
 
 		Settings settings = Settings.getInstance();
-		UIDefaults def = UIManager.getDefaults();
+		UIDefaults def = WbUIManager.getDefaults();
 
 		Font stdFont = settings.getStandardFont();
 		if (stdFont != null)
@@ -167,30 +167,30 @@ public class LnFHelper
 		}
 
     def.put("Button.showMnemonics", Boolean.valueOf(GuiSettings.getShowMnemonics()));
-    UIManager.put("Synthetica.extendedFileChooser.rememberLastDirectory", false);
+    WbUIManager.put("Synthetica.extendedFileChooser.rememberLastDirectory", false);
 	}
 
   public static boolean isWebLaf()
   {
-		String lnf = UIManager.getLookAndFeel().getClass().getName();
+		String lnf = WbUIManager.getLookAndFeel().getClass().getName();
 		return lnf.contains("WebLookAndFeel");
   }
 
   public static boolean isGTKLookAndFeel()
   {
-		String lnf = UIManager.getLookAndFeel().getClass().getName();
+		String lnf = WbUIManager.getLookAndFeel().getClass().getName();
 		return lnf.contains("GTKLookAndFeel");
   }
 
 	public static boolean isWindowsLookAndFeel()
 	{
-		String lnf = UIManager.getLookAndFeel().getClass().getName();
+		String lnf = WbUIManager.getLookAndFeel().getClass().getName();
 		return lnf.contains("plaf.windows");
 	}
 
   public static boolean isNonStandardLookAndFeel()
   {
-    String lnf = UIManager.getLookAndFeel().getClass().getName();
+    String lnf = WbUIManager.getLookAndFeel().getClass().getName();
     return (lnf.startsWith("com.sun.java") == false && lnf.startsWith("javax.swing.plaf") == false);
   }
 
@@ -202,7 +202,7 @@ public class LnFHelper
 
     LogMgr.logInfo(new CallerInfo(){}, "Scaling default fonts by: " + scaler.getScaleFactor());
 
-		UIDefaults def = UIManager.getDefaults();
+		UIDefaults def = WbUIManager.getDefaults();
 
     // when the user configures a scale factor, don't check the menu fonts
     boolean checkJavaFonts = Settings.getInstance().getScaleFactor() < 0;
@@ -221,7 +221,7 @@ public class LnFHelper
 
 	public static boolean isJGoodies()
 	{
-		String lnf = UIManager.getLookAndFeel().getClass().getName();
+		String lnf = WbUIManager.getLookAndFeel().getClass().getName();
 		return lnf.startsWith("com.jgoodies.looks.plastic");
 	}
 
@@ -232,7 +232,7 @@ public class LnFHelper
 		{
 			if (StringUtil.isEmptyString(className))
 			{
-				className = UIManager.getSystemLookAndFeelClassName();
+				className = WbUIManager.getSystemLookAndFeelClassName();
 			}
 			LnFManager mgr = new LnFManager();
 			LnFDefinition def = mgr.findLookAndFeel(className);
@@ -248,15 +248,15 @@ public class LnFHelper
         // under Windows 10 with the "Creators Update"
         if (className.contains(".plaf.windows.") && Settings.getInstance().getBoolProperty("workbench.gui.fix.filechooser.bug", false))
         {
-          UIManager.put("FileChooser.useSystemExtensionHiding", false);
+          WbUIManager.put("FileChooser.useSystemExtensionHiding", false);
         }
-				UIManager.put("FileChooser.useSystemIcons", Boolean.TRUE);
+				WbUIManager.put("FileChooser.useSystemIcons", Boolean.TRUE);
 
 				// I hate the bold menu font in the Metal LnF
-				UIManager.put("swing.boldMetal", Boolean.FALSE);
+				WbUIManager.put("swing.boldMetal", Boolean.FALSE);
 
 				// Remove Synthetica's own window decorations
-				UIManager.put("Synthetica.window.decoration", Boolean.FALSE);
+				WbUIManager.put("Synthetica.window.decoration", Boolean.FALSE);
 
 				// Remove the extra icons for read only text fields and
 				// the "search bar" in the main menu for the Substance Look & Feel
@@ -264,13 +264,13 @@ public class LnFHelper
 
         if (className.startsWith("org.jb2011.lnf.beautyeye"))
         {
-          UIManager.put("RootPane.setupButtonVisible", false);
+          WbUIManager.put("RootPane.setupButtonVisible", false);
         }
 
 				LnFLoader loader = new LnFLoader(def);
 				LookAndFeel lnf = loader.getLookAndFeel();
 
-				UIManager.setLookAndFeel(lnf);
+				WbUIManager.setLookAndFeel(lnf);
 				PlatformHelper.installGtkPopupBugWorkaround();
 			}
 		}
@@ -280,20 +280,20 @@ public class LnFHelper
 			setSystemLnF();
 		}
 
-		checkWindowsClassic(UIManager.getLookAndFeel().getClass().getName());
+		checkWindowsClassic(WbUIManager.getLookAndFeel().getClass().getName());
 	}
 
   private void initializeWebLaf()
   {
     try
     {
-      LookAndFeel lookAndFeel = UIManager.getLookAndFeel();
+      LookAndFeel lookAndFeel = WbUIManager.getLookAndFeel();
       Method init = lookAndFeel.getClass().getMethod("initializeManagers");
       init.invoke(null, (Object[])null);
 
-      UIManager.getDefaults().put("ToolBarUI", "com.alee.laf.toolbar.WebToolBarUI");
-      UIManager.getDefaults().put("TabbedPaneUI", "com.alee.laf.toolbar.WebTabbedPaneUI");
-      UIManager.getDefaults().put("SplitPaneUI", "com.alee.laf.splitpane.WebSplitPaneUI");
+      WbUIManager.getDefaults().put("ToolBarUI", "com.alee.laf.toolbar.WebToolBarUI");
+      WbUIManager.getDefaults().put("TabbedPaneUI", "com.alee.laf.toolbar.WebTabbedPaneUI");
+      WbUIManager.getDefaults().put("SplitPaneUI", "com.alee.laf.splitpane.WebSplitPaneUI");
     }
     catch (Throwable th)
     {
@@ -305,7 +305,7 @@ public class LnFHelper
 	{
 		try
 		{
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			WbUIManager.setLookAndFeel(WbUIManager.getSystemLookAndFeelClassName());
 		}
 		catch (Exception ex)
 		{

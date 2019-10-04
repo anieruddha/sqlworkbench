@@ -30,7 +30,7 @@ import java.net.URLClassLoader;
 import java.util.List;
 
 import javax.swing.LookAndFeel;
-import javax.swing.UIManager;
+import workbench.gui.WbUIManager;
 
 import workbench.resource.Settings;
 
@@ -115,7 +115,7 @@ public class LnFLoader
 				// Tell the LNF class which classloader to use!
 				// This is important otherwise, the LnF will no
 				// initialize correctly
-				UIManager.getDefaults().put("ClassLoader", loader);
+				WbUIManager.getDefaults().put("ClassLoader", loader);
 				Thread.currentThread().setContextClassLoader(loader);
 				lnfClass = loader.loadClass(lnfClassName);
 			}
@@ -125,7 +125,7 @@ public class LnFLoader
 				// is available through the system classloader
 				// My tests showed that the property is not set initially
 				// so I assume this means "use system classloader"
-				UIManager.getDefaults().put("ClassLoader", null);
+				WbUIManager.getDefaults().put("ClassLoader", null);
 				lnfClass = Class.forName(lnfClassName);
 			}
 		}

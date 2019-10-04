@@ -21,7 +21,7 @@ import java.beans.PropertyChangeListener;
 import java.util.Map;
 
 import javax.swing.JComponent;
-import javax.swing.UIManager;
+import workbench.gui.WbUIManager;
 import javax.swing.text.PlainDocument;
 import javax.swing.text.Segment;
 import javax.swing.text.TabExpander;
@@ -214,7 +214,7 @@ public class TextAreaPainter
 
   private Color getDefaultColor(String key, Color fallback)
   {
-    Color c = UIManager.getColor(key);
+    Color c = WbUIManager.getColor(key);
     return c == null ? fallback : c;
   }
 

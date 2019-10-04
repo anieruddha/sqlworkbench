@@ -35,8 +35,8 @@ import java.beans.PropertyChangeListener;
 import javax.swing.Icon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.UIManager;
 
+import workbench.gui.WbUIManager;
 import workbench.resource.GuiSettings;
 import workbench.resource.Settings;
 
@@ -179,22 +179,22 @@ public class TabButtonComponent
     {
       if (pane.getTabComponentAt(pane.getSelectedIndex()) == this)
       {
-        c = UIManager.getColor("TabbedPane.selected");
+        c = WbUIManager.getColor("TabbedPane.selected");
       }
       else
       {
-        c = UIManager.getColor("TabbedPane.unselectedBackground");
+        c = WbUIManager.getColor("TabbedPane.unselectedBackground");
       }
     }
 
     if (c == null)
     {
-      c = UIManager.getColor("TabbedPane.tabAreaBackground");
+      c = WbUIManager.getColor("TabbedPane.tabAreaBackground");
     }
 
     if (c == null)
     {
-      c = UIManager.getColor("TabbedPane.background");
+      c = WbUIManager.getColor("TabbedPane.background");
     }
 
     if (c == null)
@@ -220,7 +220,7 @@ public class TabButtonComponent
     }
     if (c == null)
     {
-      c = UIManager.getColor("TabbedPane.foreground");
+      c = WbUIManager.getColor("TabbedPane.foreground");
     }
     if (c == null)
     {
