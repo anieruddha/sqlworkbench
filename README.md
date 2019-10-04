@@ -7,4 +7,7 @@ Original Repository : http://sqlworkbench.mgm-tp.com/sqlworkbench
 
  Nothing concrete right now, just trying few things for my own use. 
 
- I like to make entire build process either mavenize or use gradle. On mac menu should be mac style.  
+Objective :
+ - make entire build process either mavenize or use gradle. 
+ - On mac menu should be mac style.  
+ - remove any propriety lib/api (if any) usage.
