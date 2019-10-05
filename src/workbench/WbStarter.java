@@ -22,6 +22,8 @@
 package workbench;
 
 import workbench.gui.WbUIManager;
+import workbench.resource.ResourceMgr;
+import workbench.util.Os;
 
 import java.awt.BorderLayout;
 import java.awt.Frame;
@@ -55,7 +57,10 @@ public class WbStarter
     String cleanVersion = version;
 
     int versionNr = -1;
-    System.setProperty("apple.awt.application.name", "SQL Workbench/J");
+    if(Os.getCurrentOs() == Os.Mac){
+      // This is to show Application name in Mac top bar
+      System.setProperty("apple.awt.application.name", ResourceMgr.TXT_PRODUCT_NAME);
+    }
     try
     {
       int p1 = findFirstNonDigit(cleanVersion);
