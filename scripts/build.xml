@@ -168,8 +168,6 @@
 
   <target name="compile" depends="prepare">
 
-    <!-- compile the starter class with target=1.2 so that it can be loaded by
-         older JVMs as well and is able to display the error message -->
     <javac debug="on"
            debuglevel="source,lines"
            destdir="${build}"
@@ -178,7 +176,15 @@
            source="1.8"
            encoding="ISO-8859-1"
            includeantruntime="false"
-           includes="workbench/WbStarter.java"/>
+           includes="workbench/WbStarter.java">
+      <classpath>
+        <fileset dir="../libs/odf" includes="*.jar"/>
+        <fileset dir="../libs/poi" includes="*.jar"/>
+        <fileset dir="../libs/jna" includes="*.jar"/>
+        <fileset dir="../libs/log4j" includes="*.jar"/>
+        <fileset dir="../libs/dbunit" includes="*.jar"/>
+      </classpath>
+    </javac>
 
     <!-- the rest of the application is compiled to the needed class file version -->
     <javac debug="on"
