@@ -21,9 +21,9 @@
  */
 package workbench;
 
+import sun.awt.OSInfo;
 import workbench.gui.WbUIManager;
 import workbench.resource.ResourceMgr;
-import workbench.util.Os;
 
 import java.awt.BorderLayout;
 import java.awt.Frame;
@@ -57,7 +57,7 @@ public class WbStarter
     String cleanVersion = version;
 
     int versionNr = -1;
-    if(Os.getCurrentOs() == Os.Mac){
+    if(OSInfo.getOSType() == OSInfo.OSType.MACOSX){
       // This is to show Application name in Mac top bar
       System.setProperty("apple.awt.application.name", ResourceMgr.TXT_PRODUCT_NAME);
     }
